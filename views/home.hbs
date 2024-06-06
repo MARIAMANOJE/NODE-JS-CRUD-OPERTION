@@ -1,0 +1,40 @@
+<h3>Student Management System</h3>
+<p><a href="/adduser" class="btn addbtn">Add User</a></p>
+<table>
+  <thead>
+    <tr>
+      <td>#</td>
+      <td>Name</td>
+      <td>Age</td>
+      <td>City</td>
+      <td>Edit</td>
+      <td>Delete</td>
+    </tr>
+  </thead>
+  <tbody>
+{{#each rows}}
+    <tr>
+      <td>{{this.ID}}</td>
+      <td>{{this.NAME}}</td>
+      <td>{{this.AGE}}</td>
+      <td>{{this.CITY}}</td>
+      <td><a class="btn edit" href="/edituser/{{this.ID}}">Edit</a></td>
+      <td><a class="btn delete" onclick="return confirm('Are you sure?')" href="/deleteuser/{{this.ID}}">Delete</a></td>
+    </tr>
+{{/each}}
+  </tbody>
+</table>
+
+<div class="pagination">
+  {{#if totalPages}}
+    {{#if (gt currentPage 1)}}
+      <a class="btn" href="?page=1">First</a>
+      <a class="btn" href="?page={{subtract currentPage 1}}">Previous</a>
+    {{/if}}
+    Page {{currentPage}} of {{totalPages}}
+    {{#if (lt currentPage totalPages)}}
+      <a class="btn" href="?page={{add currentPage 1}}">Next</a>
+      <a class="btn" href="?page={{totalPages}}">Last</a>
+    {{/if}}
+  {{/if}}
+</div>
